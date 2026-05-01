@@ -1,0 +1,2897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mimosa Hair – Eco-Conscious Hair Salon, Gloucester</title>
+<meta name="description" content="Mimosa Hair is an eco-friendly hair salon in Twigworth, Gloucester offering expert colour, hair extensions, and bespoke styling. Vegan, non-toxic products.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #f5f0e8;
+    --warm-white: #faf8f4;
+    --sand: #e8dfc8;
+    --taupe: #c4b49a;
+    --gold: #b8965a;
+    --gold-light: #d4ae72;
+    --dark: #2a2520;
+    --charcoal: #3d3530;
+    --mid: #6b5e52;
+    --muted-green: #7a8c78;
+    --sage: #a8b5a0;
+    --sage-light: #d4dcd1;
+    --text: #2a2520;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Jost', sans-serif;
+    --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    color: var(--text);
+    background: var(--warm-white);
+    overflow-x: hidden;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 0 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+    transition: background var(--transition), backdrop-filter var(--transition);
+  }
+
+  nav.scrolled {
+    background: rgba(250, 248, 244, 0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--sand);
+  }
+
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: var(--gold);
+    letter-spacing: 0.03em;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .nav-logo span {
+    display: block;
+    font-family: var(--sans);
+    font-size: 0.6rem;
+    font-weight: 400;
+    letter-spacing: 0.25em;
+    color: var(--mid);
+    text-transform: uppercase;
+    margin-top: -4px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: var(--sans);
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--charcoal);
+    text-decoration: none;
+    transition: color var(--transition);
+    position: relative;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; left: 0; right: 0;
+    height: 1px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transition: transform var(--transition);
+    transform-origin: left;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+  .nav-links a:hover::after { transform: scaleX(1); }
+
+  .nav-book {
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--dark);
+    border: 1px solid var(--gold);
+    padding: 0.6rem 1.4rem;
+    text-decoration: none;
+    transition: all var(--transition);
+    background: transparent;
+  }
+
+  .nav-book:hover {
+    background: var(--gold);
+    color: var(--warm-white);
+  }
+
+  /* ── HAMBURGER ── */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+    background: none;
+    border: none;
+  }
+  .hamburger span {
+    width: 24px; height: 1px;
+    background: var(--dark);
+    transition: all 0.3s;
+    display: block;
+  }
+  .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(4px, 4px); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(4px, -4px); }
+
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 72px; left: 0; right: 0; bottom: 0;
+    background: var(--warm-white);
+    z-index: 99;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .mobile-menu.open { display: flex; opacity: 1; }
+  .mobile-menu a {
+    font-family: var(--serif);
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--dark);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+  }
+  .mobile-menu a:hover { color: var(--gold); }
+
+  /* ── PAGE SECTIONS ── */
+  .page { display: none; }
+  .page.active { display: block; }
+
+  /* ── BUTTONS ── */
+  .btn-primary {
+    display: inline-block;
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--warm-white);
+    background: var(--gold);
+    border: 1px solid var(--gold);
+    padding: 1rem 2.5rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all var(--transition);
+  }
+  .btn-primary:hover {
+    background: transparent;
+    color: var(--gold);
+  }
+
+  .btn-outline {
+    display: inline-block;
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--dark);
+    background: transparent;
+    border: 1px solid var(--dark);
+    padding: 1rem 2.5rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all var(--transition);
+  }
+  .btn-outline:hover {
+    background: var(--dark);
+    color: var(--warm-white);
+  }
+
+  .btn-outline-light {
+    display: inline-block;
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--warm-white);
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.6);
+    padding: 1rem 2.5rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all var(--transition);
+  }
+  .btn-outline-light:hover {
+    background: var(--warm-white);
+    color: var(--dark);
+  }
+
+  /* ── SECTION LABEL ── */
+  .section-label {
+    font-family: var(--sans);
+    font-size: 0.65rem;
+    font-weight: 400;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: var(--serif);
+    font-weight: 300;
+    line-height: 1.15;
+  }
+
+  .divider {
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+    margin: 1.5rem 0;
+  }
+
+  .divider-center {
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+    margin: 1.5rem auto;
+  }
+
+  /* ── FADE IN ANIMATION ── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .fade-in-delay-1 { transition-delay: 0.1s; }
+  .fade-in-delay-2 { transition-delay: 0.2s; }
+  .fade-in-delay-3 { transition-delay: 0.3s; }
+  .fade-in-delay-4 { transition-delay: 0.4s; }
+
+  /* ══════════════════════════════
+     HOME PAGE
+  ══════════════════════════════ */
+
+  /* Hero */
+  .hero {
+    height: 100vh;
+    min-height: 650px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: var(--dark);
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #2a2520 0%, #3d3530 50%, #2a2520 100%);
+  }
+
+  .hero-pattern {
+    position: absolute;
+    inset: 0;
+    opacity: 0.04;
+    background-image: repeating-linear-gradient(
+      45deg,
+      var(--gold) 0px, var(--gold) 1px,
+      transparent 1px, transparent 60px
+    );
+  }
+
+  .hero-img-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to right,
+      rgba(42, 37, 32, 0.92) 0%,
+      rgba(42, 37, 32, 0.6) 50%,
+      rgba(42, 37, 32, 0.3) 100%
+    );
+    z-index: 1;
+  }
+
+  /* Placeholder image area */
+  .hero-image-placeholder {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 55%;
+    background: linear-gradient(135deg, #4a3f35 0%, #6b5e52 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .hero-image-placeholder::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(184, 150, 90, 0.15) 0%,
+      transparent 60%
+    );
+  }
+
+  .placeholder-text {
+    font-family: var(--sans);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.2);
+    text-align: center;
+  }
+
+  .placeholder-icon {
+    width: 48px;
+    height: 48px;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    color: rgba(255,255,255,0.2);
+    font-size: 1.2rem;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 3rem;
+    width: 100%;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--sans);
+    font-size: 0.65rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    width: 30px;
+    height: 1px;
+    background: var(--gold-light);
+  }
+
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(3.5rem, 7vw, 6rem);
+    font-weight: 300;
+    color: var(--warm-white);
+    line-height: 1.05;
+    margin-bottom: 1.5rem;
+    max-width: 580px;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  .hero-sub {
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: rgba(250, 248, 244, 0.7);
+    max-width: 380px;
+    margin-bottom: 0.8rem;
+    line-height: 1.8;
+    letter-spacing: 0.02em;
+  }
+
+  .hero-sub2 {
+    font-family: var(--sans);
+    font-size: 0.82rem;
+    font-weight: 300;
+    color: rgba(250, 248, 244, 0.5);
+    max-width: 360px;
+    margin-bottom: 2.5rem;
+    line-height: 1.8;
+    letter-spacing: 0.02em;
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .hero-scroll span {
+    font-family: var(--sans);
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent);
+    animation: scrollPulse 2s infinite;
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; transform: scaleY(1); }
+    50% { opacity: 0.8; transform: scaleY(1.3); }
+  }
+
+  /* About Preview */
+  .about-preview {
+    padding: 7rem 3rem;
+    background: var(--dark);
+    text-align: center;
+  }
+
+  .about-preview p {
+    font-family: var(--serif);
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    font-weight: 300;
+    color: var(--sand);
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.5;
+    font-style: italic;
+  }
+
+  .about-preview p strong {
+    color: var(--gold-light);
+    font-style: normal;
+    font-weight: 400;
+  }
+
+  /* Services Section */
+  .services-section {
+    padding: 7rem 3rem;
+    background: var(--warm-white);
+  }
+
+  .services-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .services-header .section-title {
+    font-size: clamp(2.2rem, 4vw, 3rem);
+    color: var(--dark);
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .service-card {
+    background: var(--cream);
+    padding: 3rem 2rem;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: background var(--transition);
+    text-align: center;
+  }
+
+  .service-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transition: transform var(--transition);
+    transform-origin: left;
+  }
+
+  .service-card:hover { background: var(--sand); }
+  .service-card:hover::before { transform: scaleX(1); }
+
+  .service-icon {
+    width: 48px;
+    height: 48px;
+    margin: 0 auto 1.5rem;
+    color: var(--gold);
+  }
+
+  .service-category {
+    font-family: var(--sans);
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--taupe);
+    margin-bottom: 0.5rem;
+  }
+
+  .service-name {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: var(--dark);
+    margin-bottom: 1rem;
+  }
+
+  .service-desc {
+    font-size: 0.82rem;
+    color: var(--mid);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+
+  .service-link {
+    font-family: var(--sans);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    transition: color var(--transition);
+    cursor: pointer;
+  }
+
+  .service-link:hover { color: var(--dark); }
+
+  /* Eco Section */
+  .eco-section {
+    padding: 7rem 3rem;
+    background: var(--dark);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .eco-section::before {
+    content: '';
+    position: absolute;
+    top: -50%; right: -20%;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(120, 140, 120, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .eco-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+  }
+
+  .eco-img-placeholder {
+    aspect-ratio: 4/5;
+    background: linear-gradient(135deg, #3d3530, #4a3f35);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .eco-img-placeholder::after {
+    content: '';
+    position: absolute;
+    inset: 12px;
+    border: 1px solid rgba(184, 150, 90, 0.2);
+    pointer-events: none;
+  }
+
+  .eco-content .section-label { color: var(--sage); }
+
+  .eco-title {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    font-weight: 300;
+    color: var(--cream);
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  .eco-title em { font-style: italic; color: var(--gold-light); }
+
+  .eco-text {
+    font-size: 0.88rem;
+    color: rgba(245, 240, 232, 0.65);
+    line-height: 1.9;
+    margin-bottom: 2.5rem;
+  }
+
+  .eco-badges {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .badge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 1px solid rgba(168, 181, 160, 0.3);
+    padding: 0.5rem 1.2rem;
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--sage);
+    transition: all var(--transition);
+  }
+
+  .badge:hover {
+    border-color: var(--sage);
+    background: rgba(168, 181, 160, 0.08);
+  }
+
+  .badge svg { width: 14px; height: 14px; }
+
+  /* Testimonials Section */
+  .testimonials-section {
+    padding: 7rem 3rem;
+    background: var(--cream);
+  }
+
+  .testimonials-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .testimonials-header .section-title {
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    color: var(--dark);
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .testimonial-card {
+    background: var(--warm-white);
+    padding: 2.5rem;
+    position: relative;
+    transition: transform var(--transition);
+  }
+
+  .testimonial-card:hover { transform: translateY(-4px); }
+
+  .stars {
+    display: flex;
+    gap: 3px;
+    margin-bottom: 1.2rem;
+  }
+
+  .star { color: var(--gold); font-size: 0.85rem; }
+
+  .testimonial-text {
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--charcoal);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .author-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--sand);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--serif);
+    font-size: 0.9rem;
+    color: var(--gold);
+  }
+
+  .author-name {
+    font-family: var(--sans);
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: var(--dark);
+    letter-spacing: 0.05em;
+  }
+
+  .author-service {
+    font-family: var(--sans);
+    font-size: 0.65rem;
+    color: var(--taupe);
+    letter-spacing: 0.05em;
+  }
+
+  /* CTA Banner */
+  .cta-banner {
+    padding: 7rem 3rem;
+    background: linear-gradient(135deg, var(--gold) 0%, #a07840 100%);
+    text-align: center;
+  }
+
+  .cta-banner h2 {
+    font-family: var(--serif);
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-weight: 300;
+    color: var(--warm-white);
+    margin-bottom: 0.5rem;
+  }
+
+  .cta-banner p {
+    font-size: 0.88rem;
+    color: rgba(250, 248, 244, 0.75);
+    margin-bottom: 2.5rem;
+    letter-spacing: 0.03em;
+  }
+
+  /* ══════════════════════════════
+     FOOTER
+  ══════════════════════════════ */
+  footer {
+    background: var(--dark);
+    padding: 4rem 3rem 2rem;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .footer-brand .nav-logo { display: block; margin-bottom: 1rem; }
+
+  .footer-brand p {
+    font-size: 0.8rem;
+    color: rgba(245, 240, 232, 0.4);
+    line-height: 1.8;
+    max-width: 260px;
+  }
+
+  .footer-col h4 {
+    font-family: var(--sans);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--taupe);
+    margin-bottom: 1.2rem;
+  }
+
+  .footer-col ul { list-style: none; }
+
+  .footer-col ul li {
+    margin-bottom: 0.6rem;
+  }
+
+  .footer-col ul li a, .footer-col ul li span {
+    font-size: 0.8rem;
+    color: rgba(245, 240, 232, 0.5);
+    text-decoration: none;
+    cursor: pointer;
+    transition: color var(--transition);
+  }
+
+  .footer-col ul li a:hover { color: var(--gold-light); }
+
+  .footer-bottom {
+    max-width: 1100px;
+    margin: 2rem auto 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.72rem;
+    color: rgba(245, 240, 232, 0.25);
+  }
+
+  /* ══════════════════════════════
+     ABOUT PAGE
+  ══════════════════════════════ */
+  .page-hero {
+    padding: 10rem 3rem 6rem;
+    background: var(--dark);
+    text-align: center;
+  }
+
+  .page-hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(3rem, 6vw, 5rem);
+    font-weight: 300;
+    color: var(--cream);
+    margin-bottom: 1rem;
+  }
+
+  .page-hero p {
+    font-size: 0.9rem;
+    color: rgba(245, 240, 232, 0.55);
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .about-story {
+    padding: 7rem 3rem;
+    background: var(--warm-white);
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+  }
+
+  .about-story .section-title {
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    color: var(--dark);
+    margin-bottom: 1.5rem;
+  }
+
+  .about-story p {
+    font-size: 0.88rem;
+    color: var(--mid);
+    line-height: 1.9;
+    margin-bottom: 1rem;
+  }
+
+  .about-img-placeholder {
+    aspect-ratio: 3/4;
+    background: linear-gradient(135deg, var(--sand), var(--taupe));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .about-img-placeholder::after {
+    content: '';
+    position: absolute;
+    inset: 12px;
+    border: 1px solid rgba(184, 150, 90, 0.25);
+  }
+
+  .values-section {
+    padding: 5rem 3rem;
+    background: var(--cream);
+  }
+
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    max-width: 1100px;
+    margin: 3rem auto 0;
+  }
+
+  .value-item {
+    text-align: center;
+    padding: 2rem;
+  }
+
+  .value-icon {
+    width: 52px;
+    height: 52px;
+    background: var(--warm-white);
+    border: 1px solid var(--sand);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.2rem;
+    color: var(--gold);
+  }
+
+  .value-item h3 {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: var(--dark);
+    margin-bottom: 0.5rem;
+  }
+
+  .value-item p {
+    font-size: 0.8rem;
+    color: var(--mid);
+    line-height: 1.7;
+  }
+
+  /* Team Section */
+  .team-section {
+    padding: 7rem 3rem;
+    background: var(--warm-white);
+  }
+
+  .team-section > * { max-width: 1100px; margin-left: auto; margin-right: auto; }
+
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    max-width: 1100px;
+    margin: 3rem auto 0;
+  }
+
+  .team-card {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  .team-photo {
+    aspect-ratio: 3/4;
+    background: linear-gradient(135deg, var(--sand), var(--taupe));
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 1.2rem;
+  }
+
+  .team-photo::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(42,37,32,0.5) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity var(--transition);
+  }
+
+  .team-card:hover .team-photo::after { opacity: 1; }
+
+  .team-photo-inner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .team-name {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: var(--dark);
+    margin-bottom: 0.25rem;
+  }
+
+  .team-role {
+    font-family: var(--sans);
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--taupe);
+  }
+
+  /* ══════════════════════════════
+     SERVICES PAGE
+  ══════════════════════════════ */
+  .services-page-section {
+    padding: 5rem 3rem;
+  }
+
+  .services-page-section:nth-child(even) {
+    background: var(--cream);
+  }
+
+  .services-page-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .services-page-header {
+    display: flex;
+    align-items: baseline;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--sand);
+  }
+
+  .services-page-header h2 {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 3vw, 2.5rem);
+    font-weight: 300;
+    color: var(--dark);
+  }
+
+  .service-detail-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .service-detail-card {
+    padding: 2.5rem;
+    background: var(--warm-white);
+    border-bottom: 2px solid transparent;
+    transition: border-color var(--transition);
+  }
+
+  .services-page-section:nth-child(even) .service-detail-card {
+    background: var(--warm-white);
+  }
+
+  .service-detail-card:hover {
+    border-bottom-color: var(--gold);
+  }
+
+  .service-detail-card h3 {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: var(--dark);
+    margin-bottom: 1rem;
+  }
+
+  .service-detail-card p {
+    font-size: 0.83rem;
+    color: var(--mid);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+  }
+
+  .service-benefits {
+    list-style: none;
+    margin-bottom: 1.5rem;
+  }
+
+  .service-benefits li {
+    font-size: 0.78rem;
+    color: var(--mid);
+    padding: 0.3rem 0;
+    padding-left: 1rem;
+    position: relative;
+  }
+
+  .service-benefits li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+  }
+
+  .price-placeholder {
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--taupe);
+    margin-bottom: 1.5rem;
+  }
+
+  /* ══════════════════════════════
+     TESTIMONIALS PAGE
+  ══════════════════════════════ */
+  .testimonials-page {
+    padding: 5rem 3rem;
+    background: var(--warm-white);
+  }
+
+  .testimonials-full-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    max-width: 900px;
+    margin: 3rem auto 0;
+  }
+
+  .testimonial-full-card {
+    padding: 2.5rem;
+    background: var(--cream);
+    border-left: 2px solid var(--gold);
+    transition: transform var(--transition);
+  }
+
+  .testimonial-full-card:hover { transform: translateX(4px); }
+
+  .testimonial-full-text {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--charcoal);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+
+  /* ══════════════════════════════
+     CONTACT PAGE
+  ══════════════════════════════ */
+  .contact-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 5rem 3rem;
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 5rem;
+  }
+
+  .contact-info h2 {
+    font-family: var(--serif);
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 300;
+    color: var(--dark);
+    margin-bottom: 2rem;
+  }
+
+  .contact-item {
+    display: flex;
+    gap: 1.2rem;
+    margin-bottom: 2rem;
+    align-items: flex-start;
+  }
+
+  .contact-icon {
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--sand);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+
+  .contact-label {
+    font-family: var(--sans);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--taupe);
+    margin-bottom: 0.3rem;
+  }
+
+  .contact-value {
+    font-size: 0.9rem;
+    color: var(--dark);
+    line-height: 1.6;
+  }
+
+  .contact-value a {
+    color: var(--dark);
+    text-decoration: none;
+    transition: color var(--transition);
+  }
+
+  .contact-value a:hover { color: var(--gold); }
+
+  .accessibility-note {
+    background: var(--sage-light);
+    padding: 1rem 1.2rem;
+    margin-top: 2rem;
+    font-size: 0.78rem;
+    color: var(--muted-green);
+    letter-spacing: 0.03em;
+    display: flex;
+    gap: 0.6rem;
+    align-items: flex-start;
+  }
+
+  /* Map */
+  .map-embed {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: var(--cream);
+    border: 0;
+    display: block;
+    margin-bottom: 2rem;
+  }
+
+  /* Contact Form */
+  .contact-form { }
+
+  .contact-form h3 {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: var(--dark);
+    margin-bottom: 1.5rem;
+  }
+
+  .form-group {
+    margin-bottom: 1.2rem;
+  }
+
+  .form-group label {
+    display: block;
+    font-family: var(--sans);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 0.4rem;
+  }
+
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    width: 100%;
+    padding: 0.9rem 1rem;
+    background: var(--cream);
+    border: 1px solid var(--sand);
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    color: var(--dark);
+    transition: border-color var(--transition);
+    outline: none;
+    font-weight: 300;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus {
+    border-color: var(--gold);
+  }
+
+  .form-group textarea { height: 120px; resize: vertical; }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  /* ══════════════════════════════
+     RESPONSIVE
+  ══════════════════════════════ */
+  @media (max-width: 900px) {
+    nav { padding: 0 1.5rem; }
+    .nav-links, .nav-book { display: none; }
+    .hamburger { display: flex; }
+
+    .hero-image-placeholder { width: 45%; }
+    .hero-content { padding: 0 1.5rem; }
+
+    .about-preview { padding: 5rem 1.5rem; }
+    .services-section { padding: 5rem 1.5rem; }
+    .services-grid { grid-template-columns: 1fr 1fr; gap: 2px; }
+
+    .eco-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .eco-img-placeholder { aspect-ratio: 16/9; }
+    .eco-section { padding: 5rem 1.5rem; }
+
+    .testimonials-section { padding: 5rem 1.5rem; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+
+    .cta-banner { padding: 5rem 1.5rem; }
+
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    footer { padding: 3rem 1.5rem 1.5rem; }
+
+    .about-story { grid-template-columns: 1fr; gap: 3rem; padding: 5rem 1.5rem; }
+    .values-grid { grid-template-columns: 1fr 1fr; }
+    .values-section { padding: 4rem 1.5rem; }
+    .team-grid { grid-template-columns: repeat(2, 1fr); }
+    .team-section { padding: 5rem 1.5rem; }
+
+    .service-detail-grid { grid-template-columns: 1fr; }
+    .services-page-section { padding: 4rem 1.5rem; }
+
+    .testimonials-full-grid { grid-template-columns: 1fr; }
+    .testimonials-page { padding: 4rem 1.5rem; }
+
+    .contact-grid { grid-template-columns: 1fr; gap: 3rem; padding: 4rem 1.5rem; }
+    .form-row { grid-template-columns: 1fr; }
+
+    .page-hero { padding: 8rem 1.5rem 4rem; }
+  }
+
+  @media (max-width: 600px) {
+    .services-grid { grid-template-columns: 1fr; }
+    .values-grid { grid-template-columns: 1fr; }
+    .team-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-grid { grid-template-columns: 1fr; }
+    .hero-image-placeholder { display: none; }
+    .hero h1 { font-size: clamp(2.8rem, 10vw, 4rem); }
+  }
+  /* ══════════════════════════════
+     PRODUCTS PAGE
+  ══════════════════════════════ */
+
+  /* Category tabs */
+  .prod-tab {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--mid);
+    background: none;
+    border: none;
+    padding: 0.9rem 1.6rem;
+    cursor: pointer;
+    position: relative;
+    transition: color var(--transition);
+    white-space: nowrap;
+  }
+
+  .prod-tab::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; left: 0; right: 0;
+    height: 2px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transition: transform var(--transition);
+  }
+
+  .prod-tab:hover { color: var(--dark); }
+
+  .prod-tab.active {
+    color: var(--dark);
+  }
+
+  .prod-tab.active::after { transform: scaleX(1); }
+
+  /* Product grid */
+  .prod-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    padding-bottom: 4rem;
+  }
+
+  .prod-card {
+    background: var(--warm-white);
+    display: flex;
+    flex-direction: column;
+    transition: transform var(--transition), box-shadow var(--transition);
+    cursor: pointer;
+  }
+
+  .prod-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(42,37,32,0.08);
+  }
+
+  .prod-img-wrap {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .prod-img-placeholder {
+    aspect-ratio: 3/4;
+    background: linear-gradient(135deg, var(--sand), var(--taupe));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform var(--transition);
+  }
+
+  .prod-card:hover .prod-img-placeholder { transform: scale(1.03); }
+
+  .prod-badges-overlay {
+    position: absolute;
+    top: 0.8rem;
+    left: 0.8rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .prod-badge {
+    font-family: var(--sans);
+    font-size: 0.55rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    background: rgba(42,37,32,0.75);
+    color: var(--gold-light);
+    padding: 0.25rem 0.5rem;
+    backdrop-filter: blur(4px);
+  }
+
+  .prod-info {
+    padding: 1.2rem 1.2rem 1.4rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .prod-category {
+    font-family: var(--sans);
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--taupe);
+    margin-bottom: 0.3rem;
+  }
+
+  .prod-name {
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    font-weight: 400;
+    color: var(--dark);
+    margin-bottom: 0.6rem;
+    line-height: 1.3;
+  }
+
+  .prod-desc {
+    font-size: 0.78rem;
+    color: var(--mid);
+    line-height: 1.7;
+    margin-bottom: 0.8rem;
+    flex: 1;
+  }
+
+  .prod-benefits {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 1rem;
+  }
+
+  .prod-benefits span {
+    font-family: var(--sans);
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    color: var(--muted-green);
+    background: var(--sage-light);
+    padding: 0.2rem 0.5rem;
+  }
+
+  .prod-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 0.8rem;
+    border-top: 1px solid var(--sand);
+  }
+
+  .prod-price {
+    font-family: var(--sans);
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    color: var(--taupe);
+  }
+
+  .prod-btn {
+    font-family: var(--sans);
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--dark);
+    background: none;
+    border: 1px solid var(--dark);
+    padding: 0.4rem 0.8rem;
+    cursor: pointer;
+    transition: all var(--transition);
+  }
+
+  .prod-btn:hover {
+    background: var(--dark);
+    color: var(--warm-white);
+  }
+
+  /* Featured products */
+  .featured-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .featured-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    transition: border-color var(--transition);
+  }
+
+  .featured-card:hover { border-color: rgba(184,150,90,0.3); }
+
+  .featured-img {
+    position: relative;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+  }
+
+  .featured-img-inner {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #3d3530, #4a3f35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform var(--transition);
+  }
+
+  .featured-card:hover .featured-img-inner { transform: scale(1.03); }
+
+  .featured-stylist-badge {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--gold);
+    padding: 0.5rem 1rem;
+    font-family: var(--sans);
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--warm-white);
+    text-align: center;
+  }
+
+  .featured-info {
+    padding: 1.5rem;
+  }
+
+  /* Chosen-with-care responsive */
+  .chosen-grid { }
+
+  /* Products responsive */
+  @media (max-width: 900px) {
+    .prod-grid { grid-template-columns: repeat(2, 1fr); }
+    .featured-grid { grid-template-columns: 1fr; }
+    .chosen-grid { grid-template-columns: 1fr !important; gap: 3rem !important; }
+  }
+
+  @media (max-width: 600px) {
+    .prod-grid { grid-template-columns: 1fr; }
+    .prod-tab { font-size: 0.65rem; padding: 0.7rem 0.9rem; }
+  }
+
+</style>
+</head>
+<body>
+
+<!-- ═══ NAVIGATION ═══ -->
+<nav id="main-nav">
+  <a class="nav-logo" onclick="showPage('home')">
+    Mimosa Hair
+    <span>by Victoria Kate</span>
+  </a>
+  <ul class="nav-links">
+    <li><a onclick="showPage('home')">Home</a></li>
+    <li><a onclick="showPage('about')">About</a></li>
+    <li><a onclick="showPage('services')">Services</a></li>
+    <li><a onclick="showPage('products')">Products</a></li>
+    <li><a onclick="showPage('testimonials')">Reviews</a></li>
+    <li><a onclick="showPage('contact')">Contact</a></li>
+  </ul>
+  <a class="nav-book" href="tel:01452767172">Book Now</a>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a onclick="showPage('home'); closeMenu()">Home</a>
+  <a onclick="showPage('about'); closeMenu()">About</a>
+  <a onclick="showPage('services'); closeMenu()">Services</a>
+  <a onclick="showPage('products'); closeMenu()">Products</a>
+  <a onclick="showPage('testimonials'); closeMenu()">Reviews</a>
+  <a onclick="showPage('contact'); closeMenu()">Contact</a>
+  <a href="tel:01452767172" style="color: var(--gold); font-size: 1.2rem; margin-top: 1rem;">Book Now</a>
+</div>
+
+<!-- ═══════════════════════════════════
+     HOME PAGE
+════════════════════════════════════ -->
+<div id="home" class="page active">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-pattern"></div>
+    <div class="hero-image-placeholder">
+      <div class="hero-img-overlay"></div>
+      <div class="placeholder-text" style="position:relative;z-index:1;">
+        <div class="placeholder-icon">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg>
+        </div>
+        Salon Photography<br>Placeholder
+      </div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">Eco-conscious hair salon</div>
+      <h1>Letting your<br><em>true beauty</em><br>shine</h1>
+      <p class="hero-sub">Experience world-class hair services at our eco-conscious salon.</p>
+      <p class="hero-sub2">We focus on creating your dream hair while making your hair health our priority.</p>
+      <a class="btn-primary" href="tel:01452767172">Book an Appointment</a>
+    </div>
+    <div class="hero-scroll">
+      <div class="scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- About Preview -->
+  <section class="about-preview">
+    <p class="fade-in">Established in <strong>2025</strong>, Mimosa Hair is your go-to destination for creative cuts, expert colour, and <strong>bespoke styling</strong> tailored just for you.</p>
+  </section>
+
+  <!-- Services -->
+  <section class="services-section">
+    <div class="services-header">
+      <p class="section-label fade-in">What we offer</p>
+      <h2 class="section-title fade-in fade-in-delay-1">Our Services</h2>
+      <div class="divider-center fade-in fade-in-delay-2"></div>
+    </div>
+    <div class="services-grid">
+
+      <div class="service-card fade-in">
+        <div class="service-icon">
+          <svg fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 48 48"><circle cx="24" cy="14" r="8"/><path d="M12 42c0-6.627 5.373-12 12-12s12 5.373 12 12"/><path d="M32 20l8 8M36 24l4-4"/></svg>
+        </div>
+        <div class="service-category">Haircare</div>
+        <div class="service-name">Haircut & Styling</div>
+        <p class="service-desc">Precision cuts and expert styling tailored to your face shape, lifestyle, and personal aesthetic.</p>
+        <a class="service-link" onclick="showPage('services')">Learn More →</a>
+      </div>
+
+      <div class="service-card fade-in fade-in-delay-1">
+        <div class="service-icon">
+          <svg fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 48 48"><path d="M12 36c6-8 12-20 24-24"/><path d="M18 24c4-4 10-8 18-6"/><circle cx="36" cy="12" r="3"/></svg>
+        </div>
+        <div class="service-category">Haircare</div>
+        <div class="service-name">Colour & Highlights</div>
+        <p class="service-desc">From subtle balayage to bold transformations — bespoke colour crafted to complement you perfectly.</p>
+        <a class="service-link" onclick="showPage('services')">Learn More →</a>
+      </div>
+
+      <div class="service-card fade-in fade-in-delay-2">
+        <div class="service-icon">
+          <svg fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 48 48"><path d="M16 8c0 8 16 8 16 16s-16 8-16 16"/><path d="M24 8v32"/></svg>
+        </div>
+        <div class="service-category">Haircare</div>
+        <div class="service-name">Smoothing Treatments</div>
+        <p class="service-desc">Achieve sleek, frizz-free hair with long-lasting smoothing treatments for effortless manageability.</p>
+        <a class="service-link" onclick="showPage('services')">Learn More →</a>
+      </div>
+
+      <div class="service-card fade-in">
+        <div class="service-icon">
+          <svg fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 48 48"><path d="M24 8c-8 0-14 6-14 14 0 6 3.5 11 9 13v5h10v-5c5.5-2 9-7 9-13 0-8-6-14-14-14z"/><path d="M20 40h8"/></svg>
+        </div>
+        <div class="service-category">Treatments</div>
+        <div class="service-name">Hair Treatments</div>
+        <p class="service-desc">Nourishing, restorative treatments using eco-conscious products to strengthen and revitalise your hair.</p>
+        <a class="service-link" onclick="showPage('services')">Learn More →</a>
+      </div>
+
+      <div class="service-card fade-in fade-in-delay-1">
+        <div class="service-icon">
+          <svg fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 48 48"><path d="M24 8C12 8 8 20 8 28a16 16 0 0032 0c0-8-4-20-16-20z"/><path d="M16 28c0-4 3-8 8-8s8 4 8 8"/></svg>
+        </div>
+        <div class="service-category">Treatments</div>
+        <div class="service-name">Hair Loss Solutions</div>
+        <p class="service-desc">Compassionate, expert care and specialist treatments to support you on your hair wellness journey.</p>
+        <a class="service-link" onclick="showPage('services')">Learn More →</a>
+      </div>
+
+      <div class="service-card fade-in fade-in-delay-2">
+        <div class="service-icon">
+          <svg fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 48 48"><path d="M24 6C12 6 8 18 8 24c0 4 2 8 5 10l2 8h18l2-8c3-2 5-6 5-10 0-6-4-18-16-18z"/><path d="M18 14c2-4 4-6 6-6s4 2 6 6"/></svg>
+        </div>
+        <div class="service-category">Service</div>
+        <div class="service-name">Hair Extensions</div>
+        <p class="service-desc">Premium extensions applied with expert precision for seamless length, volume, and lasting beauty.</p>
+        <a class="service-link" onclick="showPage('services')">Learn More →</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Eco & Values -->
+  <section class="eco-section">
+    <div class="eco-inner">
+      <div class="eco-img-placeholder fade-in">
+        <div class="placeholder-text">
+          <div class="placeholder-icon">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          Salon / Products<br>Photography Placeholder
+        </div>
+      </div>
+      <div class="eco-content fade-in fade-in-delay-1">
+        <p class="section-label">Our commitment</p>
+        <h2 class="eco-title">Beautiful Hair.<br><em>Mindfully Created.</em></h2>
+        <div class="divider"></div>
+        <p class="eco-text">We are dedicated to eco-conscious excellence. From achieving the ultimate glossy finish to supporting you through hair loss journeys, we create beautiful hair that celebrates you and respects the planet.</p>
+        <p class="eco-text">Every product we use is carefully chosen to be kind to your hair, your health, and our environment. Because looking good should never cost the earth.</p>
+        <div class="eco-badges">
+          <div class="badge">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 20 20"><path d="M10 2C6 2 3 6 3 10s3 8 7 8 7-4 7-8-3-8-7-8z"/><path d="M10 6v4l3 3"/></svg>
+            Vegan
+          </div>
+          <div class="badge">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 20 20"><path d="M10 2l2 6h6l-5 4 2 6-5-4-5 4 2-6-5-4h6z"/></svg>
+            Non-toxic
+          </div>
+          <div class="badge">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 20 20"><path d="M10 2c-4 2-6 6-4 10 1 2 3 4 4 4 1 0 3-2 4-4 2-4 0-8-4-10z"/></svg>
+            Eco-friendly
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials-section">
+    <div class="testimonials-header">
+      <p class="section-label fade-in">What our clients say</p>
+      <h2 class="section-title fade-in fade-in-delay-1">Client Stories</h2>
+      <div class="divider-center fade-in fade-in-delay-2"></div>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card fade-in">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"I've been searching for a colourist who truly understands what I want for years. Victoria absolutely nailed my balayage — the most natural, gorgeous result I've ever had."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">S</div>
+          <div>
+            <div class="author-name">Sophie R.</div>
+            <div class="author-service">Colour & Highlights</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card fade-in fade-in-delay-1">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"The team at Mimosa Hair made me feel so at ease when I came in about hair loss. Their specialist treatment has genuinely transformed my confidence. I can't recommend them enough."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">A</div>
+          <div>
+            <div class="author-name">Amanda T.</div>
+            <div class="author-service">Hair Loss Support</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card fade-in fade-in-delay-2">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"My extensions look completely natural and Beth was so meticulous throughout the whole process. The salon itself is beautiful — and knowing everything is eco-friendly is such a bonus."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">L</div>
+          <div>
+            <div class="author-name">Lauren M.</div>
+            <div class="author-service">Hair Extensions</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <section class="cta-banner">
+    <h2 class="fade-in">Ready for your dream hair?</h2>
+    <p class="fade-in fade-in-delay-1">Our team of expert stylists are ready to bring your vision to life.</p>
+    <a class="btn-outline-light fade-in fade-in-delay-2" href="tel:01452767172">Book an Appointment</a>
+  </section>
+
+</div><!-- end home -->
+
+<!-- ═══════════════════════════════════
+     ABOUT PAGE
+════════════════════════════════════ -->
+<div id="about" class="page">
+
+  <section class="page-hero">
+    <p class="section-label" style="color: var(--sage);">Our story</p>
+    <h1>About Mimosa Hair</h1>
+    <div class="divider-center" style="background: var(--taupe);"></div>
+    <p>A salon built on passion, purpose, and an unwavering commitment to your hair health.</p>
+  </section>
+
+  <div class="about-story fade-in">
+    <div>
+      <p class="section-label">Est. 2025</p>
+      <h2 class="section-title">Where expertise meets <em style="font-style:italic; color:var(--gold);">care</em></h2>
+      <div class="divider"></div>
+      <p>Mimosa Hair was born from a vision to create a salon experience unlike any other — one where the health of your hair is treated with the same importance as its beauty. Founded by Victoria Kate, a senior hair stylist with years of experience, every aspect of Mimosa Hair reflects a genuine passion for the craft.</p>
+      <p>We believe that great hair starts with great care. That's why we exclusively use vegan, non-toxic, and eco-friendly products — because we care about what goes on your hair as much as we care about the finished result.</p>
+      <p>From creative cuts and expert colour to transformative extensions and compassionate hair loss support, our team of skilled specialists are here to create your dream hair, your way.</p>
+      <div style="margin-top: 2rem;">
+        <a class="btn-outline" onclick="showPage('services')">Explore Our Services</a>
+      </div>
+    </div>
+    <div class="about-img-placeholder">
+      <div class="placeholder-text">
+        <div class="placeholder-icon" style="color: rgba(184,150,90,0.4); border-color: rgba(184,150,90,0.2);">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg>
+        </div>
+        Salon Interior<br>Photography Placeholder
+      </div>
+    </div>
+  </div>
+
+  <!-- Values -->
+  <section class="values-section">
+    <div style="max-width:1100px; margin: 0 auto; text-align:center;">
+      <p class="section-label">What drives us</p>
+      <h2 class="section-title" style="font-size: clamp(2rem, 3.5vw, 2.5rem); color: var(--dark);">Our Core Values</h2>
+      <div class="divider-center"></div>
+    </div>
+    <div class="values-grid">
+      <div class="value-item fade-in">
+        <div class="value-icon">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 22c6-4 8-8 8-12A8 8 0 004 10c0 4 2 8 8 12z"/></svg>
+        </div>
+        <h3>Sustainability</h3>
+        <p>Every product and practice we choose is guided by respect for the planet we share.</p>
+      </div>
+      <div class="value-item fade-in fade-in-delay-1">
+        <div class="value-icon">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        </div>
+        <h3>Hair Health</h3>
+        <p>We prioritise the long-term health and integrity of your hair above all else.</p>
+      </div>
+      <div class="value-item fade-in fade-in-delay-2">
+        <div class="value-icon">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+        </div>
+        <h3>Individuality</h3>
+        <p>Your hair is as unique as you are. We celebrate that and create looks that are truly yours.</p>
+      </div>
+      <div class="value-item fade-in fade-in-delay-3">
+        <div class="value-icon">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <h3>Craftsmanship</h3>
+        <p>Expert technique, ongoing education, and meticulous attention to detail in every service.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section class="team-section">
+    <div style="text-align:center;">
+      <p class="section-label">The people behind your hair</p>
+      <h2 class="section-title" style="font-size: clamp(2rem, 3.5vw, 2.8rem); color: var(--dark);">Meet Our Team</h2>
+      <div class="divider-center"></div>
+    </div>
+    <div class="team-grid">
+
+      <div class="team-card fade-in">
+        <div class="team-photo">
+          <div class="team-photo-inner">
+            <div class="placeholder-text"><div class="placeholder-icon" style="color:rgba(184,150,90,0.3);border-color:rgba(184,150,90,0.15);"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div>Photo</div>
+          </div>
+        </div>
+        <div class="team-name">Victoria Kate</div>
+        <div class="team-role">Founder & Senior Hair Stylist</div>
+      </div>
+
+      <div class="team-card fade-in fade-in-delay-1">
+        <div class="team-photo">
+          <div class="team-photo-inner">
+            <div class="placeholder-text"><div class="placeholder-icon" style="color:rgba(184,150,90,0.3);border-color:rgba(184,150,90,0.15);"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div>Photo</div>
+          </div>
+        </div>
+        <div class="team-name">Ella Louise</div>
+        <div class="team-role">Manager</div>
+      </div>
+
+      <div class="team-card fade-in fade-in-delay-2">
+        <div class="team-photo">
+          <div class="team-photo-inner">
+            <div class="placeholder-text"><div class="placeholder-icon" style="color:rgba(184,150,90,0.3);border-color:rgba(184,150,90,0.15);"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div>Photo</div>
+          </div>
+        </div>
+        <div class="team-name">Lyndsay</div>
+        <div class="team-role">Senior Hair Stylist</div>
+      </div>
+
+      <div class="team-card fade-in fade-in-delay-3">
+        <div class="team-photo">
+          <div class="team-photo-inner">
+            <div class="placeholder-text"><div class="placeholder-icon" style="color:rgba(184,150,90,0.3);border-color:rgba(184,150,90,0.15);"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div>Photo</div>
+          </div>
+        </div>
+        <div class="team-name">Estee</div>
+        <div class="team-role">Senior Hair Stylist</div>
+      </div>
+
+      <div class="team-card fade-in">
+        <div class="team-photo">
+          <div class="team-photo-inner">
+            <div class="placeholder-text"><div class="placeholder-icon" style="color:rgba(184,150,90,0.3);border-color:rgba(184,150,90,0.15);"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div>Photo</div>
+          </div>
+        </div>
+        <div class="team-name">Beth</div>
+        <div class="team-role">Hair Stylist & Extension Technician</div>
+      </div>
+
+      <div class="team-card fade-in fade-in-delay-1">
+        <div class="team-photo">
+          <div class="team-photo-inner">
+            <div class="placeholder-text"><div class="placeholder-icon" style="color:rgba(184,150,90,0.3);border-color:rgba(184,150,90,0.15);"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div>Photo</div>
+          </div>
+        </div>
+        <div class="team-name">Jess</div>
+        <div class="team-role">Hair Stylist & Extension Technician</div>
+      </div>
+
+      <div class="team-card fade-in fade-in-delay-2">
+        <div class="team-photo">
+          <div class="team-photo-inner">
+            <div class="placeholder-text"><div class="placeholder-icon" style="color:rgba(184,150,90,0.3);border-color:rgba(184,150,90,0.15);"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div>Photo</div>
+          </div>
+        </div>
+        <div class="team-name">Phoebe</div>
+        <div class="team-role">Hair Stylist</div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="cta-banner">
+    <h2 class="fade-in">Come and meet the team</h2>
+    <p class="fade-in fade-in-delay-1">We'd love to welcome you into the Mimosa Hair family.</p>
+    <a class="btn-outline-light fade-in fade-in-delay-2" href="tel:01452767172">Book Your Visit</a>
+  </section>
+
+</div><!-- end about -->
+
+<!-- ═══════════════════════════════════
+     SERVICES PAGE
+════════════════════════════════════ -->
+<div id="services" class="page">
+
+  <section class="page-hero">
+    <p class="section-label" style="color: var(--sage);">Expert care for every hair type</p>
+    <h1>Our Services</h1>
+    <div class="divider-center" style="background: var(--taupe);"></div>
+    <p>From creative cuts to specialist treatments — everything your hair needs, under one roof.</p>
+  </section>
+
+  <!-- Haircare -->
+  <section class="services-page-section">
+    <div class="services-page-inner">
+      <div class="services-page-header">
+        <p class="section-label" style="margin:0;">Haircare</p>
+        <h2>Cut, Style & Colour</h2>
+      </div>
+      <div class="service-detail-grid">
+
+        <div class="service-detail-card fade-in">
+          <h3>Haircut & Styling</h3>
+          <p>Our expert stylists deliver precision cuts bespoke to your face shape, hair texture, and lifestyle. Whether you're after a fresh trim or a complete restyle, we take the time to understand exactly what you want.</p>
+          <ul class="service-benefits">
+            <li>Personalised consultation included</li>
+            <li>Suitable for all hair types and textures</li>
+            <li>Blowdry and finish included</li>
+            <li>Expert styling advice to take home</li>
+          </ul>
+          <div class="price-placeholder">Prices from consultation</div>
+          <a class="btn-primary" href="tel:01452767172" style="font-size: 0.65rem; padding: 0.7rem 1.5rem;">Book Now</a>
+        </div>
+
+        <div class="service-detail-card fade-in fade-in-delay-1">
+          <h3>Colour & Highlights</h3>
+          <p>From sun-kissed balayage to vibrant all-over colour, our colour specialists craft bespoke tones that enhance your natural beauty. We use only vegan, non-toxic colour products for results that are kind to your hair.</p>
+          <ul class="service-benefits">
+            <li>Bespoke colour consultation</li>
+            <li>Balayage, highlights & full colour</li>
+            <li>Vegan & non-toxic colour products</li>
+            <li>Toning and glossing services available</li>
+          </ul>
+          <div class="price-placeholder">Prices from consultation</div>
+          <a class="btn-primary" href="tel:01452767172" style="font-size: 0.65rem; padding: 0.7rem 1.5rem;">Book Now</a>
+        </div>
+
+        <div class="service-detail-card fade-in fade-in-delay-2">
+          <h3>Smoothing Treatments</h3>
+          <p>Say goodbye to frizz and hello to sleek, manageable hair. Our smoothing treatments provide long-lasting results that work with your natural hair, not against it.</p>
+          <ul class="service-benefits">
+            <li>Reduces frizz and curl pattern</li>
+            <li>Long-lasting results (3–6 months)</li>
+            <li>Suitable for colour-treated hair</li>
+            <li>Formaldehyde-free options available</li>
+          </ul>
+          <div class="price-placeholder">Prices from consultation</div>
+          <a class="btn-primary" href="tel:01452767172" style="font-size: 0.65rem; padding: 0.7rem 1.5rem;">Book Now</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Treatments -->
+  <section class="services-page-section">
+    <div class="services-page-inner">
+      <div class="services-page-header">
+        <p class="section-label" style="margin:0;">Treatments</p>
+        <h2>Hair Health & Wellness</h2>
+      </div>
+      <div class="service-detail-grid">
+
+        <div class="service-detail-card fade-in">
+          <h3>Hair Treatments</h3>
+          <p>Deep conditioning and restorative treatments using eco-conscious formulas to repair damage, restore shine, and strengthen your hair from root to tip. An essential step for colour-treated or chemically processed hair.</p>
+          <ul class="service-benefits">
+            <li>Repairs damage and breakage</li>
+            <li>Restores moisture and elasticity</li>
+            <li>Enhances colour vibrancy</li>
+            <li>Vegan and non-toxic formulas only</li>
+          </ul>
+          <div class="price-placeholder">Prices from consultation</div>
+          <a class="btn-primary" href="tel:01452767172" style="font-size: 0.65rem; padding: 0.7rem 1.5rem;">Book Now</a>
+        </div>
+
+        <div class="service-detail-card fade-in fade-in-delay-1">
+          <h3>Hair Loss Support</h3>
+          <p>We offer compassionate, expert care for those experiencing hair loss or thinning. Our discreet consultations and specialist treatments are designed to support your confidence and hair wellness journey.</p>
+          <ul class="service-benefits">
+            <li>Discreet, sensitive consultations</li>
+            <li>Scalp health assessments</li>
+            <li>Specialist thinning hair treatments</li>
+            <li>Ongoing support and guidance</li>
+          </ul>
+          <div class="price-placeholder">Prices from consultation</div>
+          <a class="btn-primary" href="tel:01452767172" style="font-size: 0.65rem; padding: 0.7rem 1.5rem;">Book Now</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Extensions -->
+  <section class="services-page-section" style="background: var(--warm-white);">
+    <div class="services-page-inner">
+      <div class="services-page-header">
+        <p class="section-label" style="margin:0;">Extensions</p>
+        <h2>Length & Volume</h2>
+      </div>
+      <div class="service-detail-grid">
+
+        <div class="service-detail-card fade-in" style="grid-column: 1 / 3;">
+          <h3>Hair Extensions</h3>
+          <p>Transform your hair with premium extensions applied with expert precision by our certified extension technicians, Beth and Jess. Whether you're looking to add length, volume, or both, we'll create a result that looks and feels completely natural.</p>
+          <ul class="service-benefits">
+            <li>100% Remy human hair</li>
+            <li>Seamlessly blended for a natural finish</li>
+            <li>Various application methods available</li>
+            <li>Colour matching consultation included</li>
+            <li>Maintenance and aftercare guidance</li>
+          </ul>
+          <div class="price-placeholder">Prices from consultation — book a free assessment</div>
+          <a class="btn-primary" href="tel:01452767172" style="font-size: 0.65rem; padding: 0.7rem 1.5rem;">Book a Consultation</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-banner">
+    <h2 class="fade-in">Not sure which service is right for you?</h2>
+    <p class="fade-in fade-in-delay-1">Get in touch and our team will guide you through the options.</p>
+    <a class="btn-outline-light fade-in fade-in-delay-2" href="tel:01452767172">Get in Touch</a>
+  </section>
+
+</div><!-- end services -->
+
+<!-- ═══════════════════════════════════
+     TESTIMONIALS PAGE
+════════════════════════════════════ -->
+<div id="testimonials" class="page">
+
+  <section class="page-hero">
+    <p class="section-label" style="color: var(--sage);">Kind words</p>
+    <h1>Client Reviews</h1>
+    <div class="divider-center" style="background: var(--taupe);"></div>
+    <p>Real experiences from real clients. See why Mimosa Hair is trusted across Gloucester.</p>
+  </section>
+
+  <section class="testimonials-page">
+    <div class="testimonials-full-grid" style="max-width:900px; margin: 0 auto;">
+
+      <div class="testimonial-full-card fade-in">
+        <div class="stars" style="margin-bottom: 1rem;">★★★★★</div>
+        <p class="testimonial-full-text">"I've been searching for a colourist who truly understands what I want for years. Victoria absolutely nailed my balayage — the most natural, gorgeous result I've ever had. I left the salon feeling like a completely new person."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">S</div>
+          <div>
+            <div class="author-name">Sophie R.</div>
+            <div class="author-service">Colour & Highlights</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-full-card fade-in fade-in-delay-1">
+        <div class="stars" style="margin-bottom: 1rem;">★★★★★</div>
+        <p class="testimonial-full-text">"The team at Mimosa Hair made me feel so at ease when I came in about hair loss. Their specialist treatment has genuinely transformed my confidence. I can't recommend them highly enough."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">A</div>
+          <div>
+            <div class="author-name">Amanda T.</div>
+            <div class="author-service">Hair Loss Support</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-full-card fade-in">
+        <div class="stars" style="margin-bottom: 1rem;">★★★★★</div>
+        <p class="testimonial-full-text">"My extensions look completely natural and Beth was so meticulous throughout the whole process. The salon itself is beautiful — and knowing everything is eco-friendly makes it even better."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">L</div>
+          <div>
+            <div class="author-name">Lauren M.</div>
+            <div class="author-service">Hair Extensions</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-full-card fade-in fade-in-delay-1">
+        <div class="stars" style="margin-bottom: 1rem;">★★★★★</div>
+        <p class="testimonial-full-text">"I had a smoothing treatment with Lyndsay and the results were incredible — my hair has never been so manageable. The whole experience was so relaxing and professional. Will 100% be back."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">C</div>
+          <div>
+            <div class="author-name">Claire B.</div>
+            <div class="author-service">Smoothing Treatment</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-full-card fade-in">
+        <div class="stars" style="margin-bottom: 1rem;">★★★★★</div>
+        <p class="testimonial-full-text">"What a find! This salon ticks every box — talented stylists, gorgeous products, and a genuinely warm atmosphere. Phoebe gave me the most incredible cut I've had in years. Mimosa Hair is my new go-to."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">R</div>
+          <div>
+            <div class="author-name">Rachel D.</div>
+            <div class="author-service">Haircut & Styling</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-full-card fade-in fade-in-delay-1">
+        <div class="stars" style="margin-bottom: 1rem;">★★★★★</div>
+        <p class="testimonial-full-text">"Estee transformed my hair with a gorgeous colour I'd been nervous to try. She talked me through everything and the result exceeded every expectation. I felt so listened to. This team is truly exceptional."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">H</div>
+          <div>
+            <div class="author-name">Hannah K.</div>
+            <div class="author-service">Colour & Highlights</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="cta-banner">
+    <h2 class="fade-in">Your transformation awaits</h2>
+    <p class="fade-in fade-in-delay-1">Join our growing family of happy clients.</p>
+    <a class="btn-outline-light fade-in fade-in-delay-2" href="tel:01452767172">Book an Appointment</a>
+  </section>
+
+</div><!-- end testimonials -->
+
+<!-- ═══════════════════════════════════
+     CONTACT PAGE
+════════════════════════════════════ -->
+<div id="contact" class="page">
+
+  <section class="page-hero">
+    <p class="section-label" style="color: var(--sage);">We'd love to hear from you</p>
+    <h1>Get in Touch</h1>
+    <div class="divider-center" style="background: var(--taupe);"></div>
+    <p>Book an appointment, ask a question, or simply say hello.</p>
+  </section>
+
+  <div class="contact-grid">
+
+    <div class="fade-in">
+      <h2>Find Us</h2>
+      <div class="divider"></div>
+
+      <div class="contact-item">
+        <div class="contact-icon">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 10.5a19.79 19.79 0 01-3.07-8.67A2 2 0 013.61 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 7.91a16 16 0 006.29 6.29l.91-.86a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        </div>
+        <div>
+          <div class="contact-label">Phone</div>
+          <div class="contact-value"><a href="tel:01452767172">01452 767172</a></div>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-icon">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <div>
+          <div class="contact-label">Email</div>
+          <div class="contact-value"><a href="mailto:mimosahairltd@gmail.com">mimosahairltd@gmail.com</a></div>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-icon">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div>
+          <div class="contact-label">Address</div>
+          <div class="contact-value">
+            Unit 4, Twigworth Local Centre,<br>
+            Barley Drive, Twigworth,<br>
+            Gloucester, GL2 9SB
+          </div>
+        </div>
+      </div>
+
+      <div class="accessibility-note">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="flex-shrink:0; margin-top:1px;"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+        Our salon is fully accessible for wheelchairs and mobility scooters.
+      </div>
+
+      <!-- Map -->
+      <div style="margin-top: 2rem;">
+        <iframe
+          class="map-embed"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2474.3!2d-2.215!3d51.895!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sTwigworth%20Local%20Centre%2C%20Barley%20Drive%2C%20Gloucester!5e0!3m2!1sen!2suk!4v1620000000000!5m2!1sen!2suk"
+          style="border:0; width:100%; aspect-ratio:16/10;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
+
+    <!-- Contact Form -->
+    <div class="fade-in fade-in-delay-1">
+      <div class="contact-form">
+        <h3>Send Us a Message</h3>
+        <div class="divider"></div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" placeholder="Your first name">
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" placeholder="Your last name">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" placeholder="your@email.com">
+        </div>
+
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="tel" placeholder="Your phone number">
+        </div>
+
+        <div class="form-group">
+          <label>Service Interest</label>
+          <select>
+            <option value="" disabled selected>Select a service…</option>
+            <option>Haircut & Styling</option>
+            <option>Colour & Highlights</option>
+            <option>Smoothing Treatments</option>
+            <option>Hair Treatments</option>
+            <option>Hair Loss Support</option>
+            <option>Hair Extensions</option>
+            <option>General Enquiry</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Your Message</label>
+          <textarea placeholder="Tell us what you're looking for, any preferences, or questions you have…"></textarea>
+        </div>
+
+        <button class="btn-primary" onclick="handleSubmit()" style="width:100%; text-align:center; border:none; cursor:pointer;">Send Message</button>
+
+        <p style="font-size:0.72rem; color: var(--taupe); margin-top: 1rem; line-height: 1.7;">
+          Alternatively, call us on <a href="tel:01452767172" style="color: var(--gold); text-decoration:none;">01452 767172</a> — we're always happy to chat.
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+</div><!-- end contact -->
+
+<!-- ═══════════════════════════════════
+     PRODUCTS PAGE
+════════════════════════════════════ -->
+<div id="products" class="page">
+
+  <!-- Hero -->
+  <section class="page-hero" style="position:relative; overflow:hidden; padding-bottom: 8rem;">
+    <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(42,37,32,0.97) 0%,rgba(61,53,48,0.92) 100%);z-index:0;"></div>
+    <!-- hero image placeholder strip -->
+    <div style="position:absolute;right:0;top:0;bottom:0;width:38%;background:linear-gradient(135deg,#4a3f35,#6b5e52);display:flex;align-items:center;justify-content:center;z-index:0;">
+      <div style="position:absolute;inset:0;background:linear-gradient(to left,transparent,rgba(42,37,32,0.95));"></div>
+      <div class="placeholder-text" style="position:relative;z-index:1;">
+        <div class="placeholder-icon" style="color:rgba(184,150,90,0.3);border-color:rgba(184,150,90,0.15);">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg>
+        </div>
+        Product Lifestyle<br>Photography Placeholder
+      </div>
+    </div>
+    <div style="position:relative;z-index:1;">
+      <p class="section-label" style="color: var(--sage);">Carefully curated</p>
+      <h1 style="font-family:var(--serif);font-size:clamp(3rem,6vw,5rem);font-weight:300;color:var(--cream);margin-bottom:0.8rem;">Our Products</h1>
+      <div class="divider-center" style="background: var(--taupe);"></div>
+      <p style="font-size:0.9rem;color:rgba(245,240,232,0.55);max-width:480px;margin:0 auto;">Eco-conscious, high-performance haircare we trust and use every day.</p>
+    </div>
+  </section>
+
+  <!-- Intro -->
+  <section style="background:var(--warm-white);padding:5rem 3rem;">
+    <div style="max-width:700px;margin:0 auto;text-align:center;" class="fade-in">
+      <p class="section-label">Our philosophy</p>
+      <p style="font-family:var(--serif);font-size:clamp(1.2rem,2.5vw,1.6rem);font-weight:300;color:var(--charcoal);line-height:1.6;font-style:italic;">
+        At Mimosa Hair, we carefully select products that align with our values — vegan, non-toxic, and eco-friendly — while delivering exceptional results for your hair.
+      </p>
+      <div class="divider-center"></div>
+      <p style="font-size:0.88rem;color:var(--mid);line-height:1.9;max-width:580px;margin:0 auto;">
+        Every product you see in our salon has been rigorously tested and chosen by our team of expert stylists. We believe the best results come from using the best — and most responsible — products available.
+      </p>
+    </div>
+  </section>
+
+  <!-- Category Tabs -->
+  <section style="background:var(--cream);padding:4rem 3rem 0;">
+    <div style="max-width:1100px;margin:0 auto;">
+      <div style="text-align:center;margin-bottom:3rem;" class="fade-in">
+        <p class="section-label">Browse by category</p>
+        <h2 style="font-family:var(--serif);font-size:clamp(2rem,3.5vw,2.8rem);font-weight:300;color:var(--dark);">Product Range</h2>
+        <div class="divider-center"></div>
+      </div>
+
+      <!-- Tab buttons -->
+      <div style="display:flex;gap:0;justify-content:center;flex-wrap:wrap;border-bottom:1px solid var(--sand);margin-bottom:3rem;" class="fade-in">
+        <button class="prod-tab active" onclick="switchTab('shampoo',this)">Shampoos & Conditioners</button>
+        <button class="prod-tab" onclick="switchTab('styling',this)">Styling Products</button>
+        <button class="prod-tab" onclick="switchTab('treatments',this)">Treatments & Hair Health</button>
+        <button class="prod-tab" onclick="switchTab('extensions',this)">Extensions Care</button>
+      </div>
+
+      <!-- Tab: Shampoos & Conditioners -->
+      <div id="tab-shampoo" class="prod-tab-content">
+        <div class="prod-grid">
+
+          <div class="prod-card fade-in">
+            <div class="prod-img-wrap">
+              <div class="prod-img-placeholder">
+                <div class="placeholder-text"><div class="placeholder-icon" style="color:rgba(184,150,90,0.3);border-color:rgba(184,150,90,0.15);margin-bottom:0.5rem;"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg></div>Product Photo</div>
+              </div>
+              <div class="prod-badges-overlay">
+                <span class="prod-badge">Vegan</span>
+                <span class="prod-badge">Non-toxic</span>
+              </div>
+            </div>
+            <div class="prod-info">
+              <div class="prod-category">Shampoo</div>
+              <h3 class="prod-name">Hydrating Cleanse Shampoo</h3>
+              <p class="prod-desc">A gentle, sulphate-free formula that cleanses without stripping — perfect for colour-treated hair.</p>
+              <div class="prod-benefits">
+                <span>✦ Hydration</span><span>✦ Colour-safe</span><span>✦ Frizz control</span>
+              </div>
+              <div class="prod-footer">
+                <span class="prod-price">Price on enquiry</span>
+                <button class="prod-btn" onclick="showPage('contact')">Ask in Salon</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="prod-card fade-in fade-in-delay-1">
+            <div class="prod-img-wrap">
+              <div class="prod-img-placeholder">
+                <div class="placeholder-text"><div class="placeholder-icon" style="color:rgba(184,150,90,0.3);border-color:rgba(184,150,90,0.15);margin-bottom:0.5rem;"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg></div>Product Photo</div>
+              </div>
+              <div class="prod-badges-overlay">
+                <span class="prod-badge">Vegan</span><span class="prod-badge">Eco-friendly</span>
+              </div>
+            </div>
+            <div class="prod-info">
+              <div class="prod-category">Conditioner</div>
+              <h3 class="prod-name">Repair & Restore Conditioner</h3>
+              <p class="prod-desc">Deeply nourishing conditioner that rebuilds bonds and restores silky softness to damaged hair.</p>
+              <div class="prod-benefits">
+                <span>✦ Repair</span><span>✦ Softness</span><span>✦ Strength</span>
+              </div>
+              <div class="prod-footer">
+                <span class="prod-price">Price on enquiry</span>
+                <button class="prod-btn" onclick="showPage('contact')">Ask in Salon</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="prod-card fade-in fade-in-delay-2">
+            <div class="prod-img-wrap">
+              <div class="prod-img-placeholder">
+                <div class="placeholder-text"><div class="placeholder-icon" style="color:rgba(184,150,90,0.3);border-color:rgba(184,150,90,0.15);margin-bottom:0.5rem;"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg></div>Product Photo</div>
+              </div>
+              <div class="prod-badges-overlay">
+                <span class="prod-badge">Vegan</span><span class="prod-badge">Non-toxic</span><span class="prod-badge">Eco-friendly</span>
+              </div>
+            </div>
+            <div class="prod-info">
+              <div class="prod-category">Shampoo</div>
+              <h3 class="prod-name">Volume Boost Shampoo</h3>
+              <p class="prod-desc">Lightweight yet powerful — lifts fine hair at the root for all-day body and movement.</p>
+              <div class="prod-benefits">
+                <span>✦ Volume</span><span>✦ Lightweight</span><span>✦ Fine hair</span>
+              </div>
+              <div class="prod-footer">
+                <span class="prod-price">Price on enquiry</span>
+                <button class="prod-btn" onclick="showPage('contact')">Ask in Salon</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="prod-card fade-in fade-in-delay-3">
+            <div class="prod-img-wrap">
+              <div class="prod-img-placeholder">
+                <div class="placeholder-text"><div class="placeholder-icon" style="color:rgba(184,150,90,0.3);border-color:rgba(184,150,90,0.15);margin-bottom:0.5rem;"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg></div>Product Photo</div>
+              </div>
+              <div class="prod-badges-overlay">
+                <span class="prod-badge">Vegan</span><span class="prod-badge">Eco-friendly</span>
+              </div>
+            </div>
+            <div class="prod-info">
+              <div class="prod-category">Conditioner</div>
+              <h3 class="prod-name">Scalp Soothe Conditioner</h3>
+              <p class="prod-desc">Calming formula with natural botanicals to balance a sensitive or irritated scalp while softening lengths.</p>
+              <div class="prod-benefits">
+                <span>✦ Scalp care</span><span>✦ Soothing</span><span>✦ Balance</span>
+              </div>
+              <div class="prod-footer">
+                <span class="prod-price">Price on enquiry</span>
+                <button class="prod-btn" onclick="showPage('contact')">Ask in Salon</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Tab: Styling -->
+      <div id="tab-styling" class="prod-tab-content" style="display:none;">
+        <div class="prod-grid">
+
+          <div class="prod-card fade-in">
+            <div class="prod-img-wrap">
+              <div class="prod-img-placeholder"><div class="placeholder-text"><div class="placeholder-icon" style="color:rgba(184,150,90,0.3);border-color:rgba(184,150,90,0.15);margin-bottom:0.5rem;"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg></div>Product Photo</div></div>
+              <div class="prod-badges-overlay"><span class="prod-badge">Vegan</span><span class="prod-badge">Non-toxic</span></div>
+            </div>
+            <div class="prod-info">
+              <div class="prod-category">Heat Protection</div>
+              <h3 class="prod-name">Thermal Shield Spray</h3>
+              <p class="prod-desc">Protects hair from heat up to 230°C while adding a brilliant, frizz-free shine.</p>
+              <div class="prod-benefits"><span>✦ Heat protection</span><span>✦ Shine</span><span>✦ Frizz control</span></div>
+              <div class="prod-footer"><span class="prod-price">Price on enquiry</span><button class="prod-btn" onclick="showPage('contact')">Ask in Salon</button></div>
+            </div>
+          </div>
+
+          <div class="prod-card fade-in fade-in-delay-1">
+            <div class="prod-img-wrap">
+              <div class="prod-img-placeholder"><div class="placeholder-text"><div class="placeholder-icon" style="color:rgba(184,150,90,0.3);border-color:rgba(184,150,90,0.15);margin-bottom:0.5rem;"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg></div>Product Photo</div></div>
+              <div class="prod-badges-overlay"><span class="prod-badge">Vegan</span><span class="prod-badge">Eco-friendly</span></div>
+            </div>
+            <div class="prod-info">
+              <div class="prod-category">Finishing</div>
+              <h3 class="prod-name">Gloss Serum</h3>
+              <p class="prod-desc">A lightweight, non-greasy serum that delivers mirror-like shine and tames flyaways instantly.</p>
+              <div class="prod-benefits"><span>✦ Shine</span><span>✦ Smoothing</span><span>✦ Lightweight</span></div>
+              <div class="prod-footer"><span class="prod-price">Price on enquiry</span><button class="prod-btn" onclick="showPage('contact')">Ask in Salon</button></div>
+            </div>
+          </div>
+
+          <div class="prod-card fade-in fade-in-delay-2">
+            <div class="prod-img-wrap">
+              <div class="prod-img-placeholder"><div class="placeholder-text"><div class="placeholder-icon" style="color:rgba(184,150,90,0.3);border-color:rgba(184,150,90,0.15);margin-bottom:0.5rem;"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg></div>Product Photo</div></div>
+              <div class="prod-badges-overlay"><span class="prod-badge">Vegan</span><span class="prod-badge">Non-toxic</span></div>
+            </div>
+            <div class="prod-info">
+              <div class="prod-category">Texture</div>
+              <h3 class="prod-name">Texture & Volume Mist</h3>
+              <p class="prod-desc">A sea-salt inspired mist that creates effortless texture and lived-in volume for all hair types.</p>
+              <div class="prod-benefits"><span>✦ Texture</span><span>✦ Volume</span><span>✦ Hold</span></div>
+              <div class="prod-footer"><span class="prod-price">Price on enquiry</span><button class="prod-btn" onclick="showPage('contact')">Ask in Salon</button></div>
+            </div>
+          </div>
+
+          <div class="prod-card fade-in fade-in-delay-3">
+            <div class="prod-img-wrap">
+              <div class="prod-img-placeholder"><div class="placeholder-text"><div class="placeholder-icon" style="color:rgba(184,150,90,0.3);border-color:rgba(184,150,90,0.15);margin-bottom:0.5rem;"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg></div>Product Photo</div></div>
+              <div class="prod-badges-overlay"><span class="prod-badge">Eco-friendly</span></div>
+            </div>
+            <div class="prod-info">
+              <div class="prod-category">Hold</div>
+              <h3 class="prod-name">Flexible Hold Cream</h3>
+              <p class="prod-desc">Medium-hold styling cream that defines and controls without stiffness — ideal for smooth blowouts.</p>
+              <div class="prod-benefits"><span>✦ Definition</span><span>✦ Flexible hold</span><span>✦ Smooth finish</span></div>
+              <div class="prod-footer"><span class="prod-price">Price on enquiry</span><button class="prod-btn" onclick="showPage('contact')">Ask in Salon</button></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Tab: Treatments -->
+      <div id="tab-treatments" class="prod-tab-content" style="display:none;">
+        <div class="prod-grid">
+
+          <div class="prod-card fade-in">
+            <div class="prod-img-wrap">
+              <div class="prod-img-placeholder"><div class="placeholder-text"><div class="placeholder-icon" style="color:rgba(184,150,90,0.3);border-color:rgba(184,150,90,0.15);margin-bottom:0.5rem;"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg></div>Product Photo</div></div>
+              <div class="prod-badges-overlay"><span class="prod-badge">Vegan</span><span class="prod-badge">Non-toxic</span><span class="prod-badge">Eco-friendly</span></div>
+            </div>
+            <div class="prod-info">
+              <div class="prod-category">Deep Treatment</div>
+              <h3 class="prod-name">Bond Rebuilding Mask</h3>
+              <p class="prod-desc">An intensive weekly mask that rebuilds broken bonds from within, transforming damaged hair in minutes.</p>
+              <div class="prod-benefits"><span>✦ Bond repair</span><span>✦ Strength</span><span>✦ Elasticity</span></div>
+              <div class="prod-footer"><span class="prod-price">Price on enquiry</span><button class="prod-btn" onclick="showPage('contact')">Ask in Salon</button></div>
+            </div>
+          </div>
+
+          <div class="prod-card fade-in fade-in-delay-1">
+            <div class="prod-img-wrap">
+              <div class="prod-img-placeholder"><div class="placeholder-text"><div class="placeholder-icon" style="color:rgba(184,150,90,0.3);border-color:rgba(184,150,90,0.15);margin-bottom:0.5rem;"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg></div>Product Photo</div></div>
+              <div class="prod-badges-overlay"><span class="prod-badge">Vegan</span><span class="prod-badge">Eco-friendly</span></div>
+            </div>
+            <div class="prod-info">
+              <div class="prod-category">Scalp Health</div>
+              <h3 class="prod-name">Scalp Revive Oil</h3>
+              <p class="prod-desc">A botanical-rich scalp oil that nourishes follicles, reduces inflammation, and supports healthy hair growth.</p>
+              <div class="prod-benefits"><span>✦ Scalp health</span><span>✦ Growth support</span><span>✦ Soothing</span></div>
+              <div class="prod-footer"><span class="prod-price">Price on enquiry</span><button class="prod-btn" onclick="showPage('contact')">Ask in Salon</button></div>
+            </div>
+          </div>
+
+          <div class="prod-card fade-in fade-in-delay-2">
+            <div class="prod-img-wrap">
+              <div class="prod-img-placeholder"><div class="placeholder-text"><div class="placeholder-icon" style="color:rgba(184,150,90,0.3);border-color:rgba(184,150,90,0.15);margin-bottom:0.5rem;"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg></div>Product Photo</div></div>
+              <div class="prod-badges-overlay"><span class="prod-badge">Vegan</span><span class="prod-badge">Non-toxic</span></div>
+            </div>
+            <div class="prod-info">
+              <div class="prod-category">Hair Health</div>
+              <h3 class="prod-name">Colour Protect Elixir</h3>
+              <p class="prod-desc">A leave-in treatment that locks in colour vibrancy and shields against UV and environmental damage.</p>
+              <div class="prod-benefits"><span>✦ Colour protection</span><span>✦ UV shield</span><span>✦ Longevity</span></div>
+              <div class="prod-footer"><span class="prod-price">Price on enquiry</span><button class="prod-btn" onclick="showPage('contact')">Ask in Salon</button></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Tab: Extensions Care -->
+      <div id="tab-extensions" class="prod-tab-content" style="display:none;">
+        <div class="prod-grid">
+
+          <div class="prod-card fade-in">
+            <div class="prod-img-wrap">
+              <div class="prod-img-placeholder"><div class="placeholder-text"><div class="placeholder-icon" style="color:rgba(184,150,90,0.3);border-color:rgba(184,150,90,0.15);margin-bottom:0.5rem;"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg></div>Product Photo</div></div>
+              <div class="prod-badges-overlay"><span class="prod-badge">Vegan</span><span class="prod-badge">Extension-safe</span></div>
+            </div>
+            <div class="prod-info">
+              <div class="prod-category">Extensions Shampoo</div>
+              <h3 class="prod-name">Extensions Gentle Wash</h3>
+              <p class="prod-desc">Specially formulated to cleanse extensions without loosening bonds or causing tangling at the roots.</p>
+              <div class="prod-benefits"><span>✦ Bond-safe</span><span>✦ Gentle cleanse</span><span>✦ Tangle-free</span></div>
+              <div class="prod-footer"><span class="prod-price">Price on enquiry</span><button class="prod-btn" onclick="showPage('contact')">Ask in Salon</button></div>
+            </div>
+          </div>
+
+          <div class="prod-card fade-in fade-in-delay-1">
+            <div class="prod-img-wrap">
+              <div class="prod-img-placeholder"><div class="placeholder-text"><div class="placeholder-icon" style="color:rgba(184,150,90,0.3);border-color:rgba(184,150,90,0.15);margin-bottom:0.5rem;"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg></div>Product Photo</div></div>
+              <div class="prod-badges-overlay"><span class="prod-badge">Vegan</span><span class="prod-badge">Eco-friendly</span></div>
+            </div>
+            <div class="prod-info">
+              <div class="prod-category">Leave-in Care</div>
+              <h3 class="prod-name">Extensions Hydrating Mist</h3>
+              <p class="prod-desc">A daily leave-in spray that keeps extensions moisturised, soft, and tangle-free between washes.</p>
+              <div class="prod-benefits"><span>✦ Hydration</span><span>✦ Detangling</span><span>✦ Daily care</span></div>
+              <div class="prod-footer"><span class="prod-price">Price on enquiry</span><button class="prod-btn" onclick="showPage('contact')">Ask in Salon</button></div>
+            </div>
+          </div>
+
+          <div class="prod-card fade-in fade-in-delay-2">
+            <div class="prod-img-wrap">
+              <div class="prod-img-placeholder"><div class="placeholder-text"><div class="placeholder-icon" style="color:rgba(184,150,90,0.3);border-color:rgba(184,150,90,0.15);margin-bottom:0.5rem;"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg></div>Product Photo</div></div>
+              <div class="prod-badges-overlay"><span class="prod-badge">Vegan</span></div>
+            </div>
+            <div class="prod-info">
+              <div class="prod-category">Brush & Tool</div>
+              <h3 class="prod-name">Loop Brush for Extensions</h3>
+              <p class="prod-desc">A specially designed loop brush that detangles gently from root to tip without snagging bonds.</p>
+              <div class="prod-benefits"><span>✦ Gentle detangling</span><span>✦ Bond-safe</span><span>✦ All extension types</span></div>
+              <div class="prod-footer"><span class="prod-price">Price on enquiry</span><button class="prod-btn" onclick="showPage('contact')">Ask in Salon</button></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Featured Products -->
+  <section style="background:var(--dark);padding:6rem 3rem;">
+    <div style="max-width:1100px;margin:0 auto;">
+      <div style="text-align:center;margin-bottom:3.5rem;" class="fade-in">
+        <p class="section-label" style="color:var(--sage);">Stylist picks</p>
+        <h2 style="font-family:var(--serif);font-size:clamp(2rem,3.5vw,2.8rem);font-weight:300;color:var(--cream);">Featured Products</h2>
+        <div class="divider-center" style="background:var(--taupe);"></div>
+        <p style="font-size:0.85rem;color:rgba(245,240,232,0.5);max-width:480px;margin:0 auto;">Hand-picked by our team — the products we genuinely can't work without.</p>
+      </div>
+      <div class="featured-grid">
+
+        <div class="featured-card fade-in">
+          <div class="featured-img">
+            <div class="featured-img-inner">
+              <div class="placeholder-text"><div class="placeholder-icon" style="color:rgba(184,150,90,0.25);border-color:rgba(184,150,90,0.12);margin-bottom:0.5rem;"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg></div>Featured Product<br>Placeholder</div>
+            </div>
+            <div class="featured-stylist-badge">Recommended by our stylists</div>
+          </div>
+          <div class="featured-info">
+            <div class="prod-category" style="color:var(--sage);">Deep Treatment</div>
+            <h3 style="font-family:var(--serif);font-size:1.5rem;font-weight:300;color:var(--cream);margin:0.4rem 0 0.8rem;">Bond Rebuilding Mask</h3>
+            <p style="font-size:0.84rem;color:rgba(245,240,232,0.6);line-height:1.8;margin-bottom:1.2rem;">Our number-one salon treatment — this mask has transformed the hair of countless clients. It rebuilds broken bonds in just one application, leaving hair visibly stronger and silkier. We recommend it weekly for colour-treated hair.</p>
+            <div class="prod-benefits" style="margin-bottom:1.5rem;"><span style="color:var(--sage);">✦ Bond repair</span><span style="color:var(--sage);">✦ Strength</span><span style="color:var(--sage);">✦ Elasticity</span></div>
+            <button class="btn-outline-light" onclick="showPage('contact')" style="font-size:0.65rem;padding:0.7rem 1.5rem;">Enquire Now</button>
+          </div>
+        </div>
+
+        <div class="featured-card fade-in fade-in-delay-1">
+          <div class="featured-img">
+            <div class="featured-img-inner">
+              <div class="placeholder-text"><div class="placeholder-icon" style="color:rgba(184,150,90,0.25);border-color:rgba(184,150,90,0.12);margin-bottom:0.5rem;"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg></div>Featured Product<br>Placeholder</div>
+            </div>
+            <div class="featured-stylist-badge">Recommended by our stylists</div>
+          </div>
+          <div class="featured-info">
+            <div class="prod-category" style="color:var(--sage);">Colour Care</div>
+            <h3 style="font-family:var(--serif);font-size:1.5rem;font-weight:300;color:var(--cream);margin:0.4rem 0 0.8rem;">Colour Protect Elixir</h3>
+            <p style="font-size:0.84rem;color:rgba(245,240,232,0.6);line-height:1.8;margin-bottom:1.2rem;">After every colour service we finish with this elixir — and every client asks about it. It seals the cuticle, locks in vibrancy, and protects against fading from UV and washing. The results genuinely speak for themselves.</p>
+            <div class="prod-benefits" style="margin-bottom:1.5rem;"><span style="color:var(--sage);">✦ Colour longevity</span><span style="color:var(--sage);">✦ UV protection</span><span style="color:var(--sage);">✦ Shine</span></div>
+            <button class="btn-outline-light" onclick="showPage('contact')" style="font-size:0.65rem;padding:0.7rem 1.5rem;">Enquire Now</button>
+          </div>
+        </div>
+
+        <div class="featured-card fade-in fade-in-delay-2">
+          <div class="featured-img">
+            <div class="featured-img-inner">
+              <div class="placeholder-text"><div class="placeholder-icon" style="color:rgba(184,150,90,0.25);border-color:rgba(184,150,90,0.12);margin-bottom:0.5rem;"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg></div>Featured Product<br>Placeholder</div>
+            </div>
+            <div class="featured-stylist-badge">Recommended by our stylists</div>
+          </div>
+          <div class="featured-info">
+            <div class="prod-category" style="color:var(--sage);">Finishing</div>
+            <h3 style="font-family:var(--serif);font-size:1.5rem;font-weight:300;color:var(--cream);margin:0.4rem 0 0.8rem;">Gloss Serum</h3>
+            <p style="font-size:0.84rem;color:rgba(245,240,232,0.6);line-height:1.8;margin-bottom:1.2rem;">The finishing touch that every stylist in the salon uses. One or two drops through the mid-lengths gives that salon-finish glossiness that's so hard to recreate at home. Lightweight, non-greasy, and completely transformative.</p>
+            <div class="prod-benefits" style="margin-bottom:1.5rem;"><span style="color:var(--sage);">✦ Mirror shine</span><span style="color:var(--sage);">✦ Frizz control</span><span style="color:var(--sage);">✦ Lightweight</span></div>
+            <button class="btn-outline-light" onclick="showPage('contact')" style="font-size:0.65rem;padding:0.7rem 1.5rem;">Enquire Now</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Why We Use These Products -->
+  <section style="background:var(--cream);padding:6rem 3rem;">
+    <div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;" class="chosen-grid">
+      <div class="fade-in">
+        <p class="section-label">Our promise</p>
+        <h2 style="font-family:var(--serif);font-size:clamp(2rem,3.5vw,2.8rem);font-weight:300;color:var(--dark);margin-bottom:1rem;">Chosen<br><em style="font-style:italic;color:var(--gold);">With Care</em></h2>
+        <div class="divider"></div>
+        <p style="font-size:0.88rem;color:var(--mid);line-height:1.9;margin-bottom:1.2rem;">We only use and recommend products that support both your hair health and the environment. Every product in our salon has been selected for its performance, quality, and sustainability.</p>
+        <p style="font-size:0.88rem;color:var(--mid);line-height:1.9;margin-bottom:2rem;">Our stylists personally test every product before it earns a place on our shelves. If we wouldn't use it on our own hair, we won't use it on yours.</p>
+        <div class="eco-badges">
+          <div class="badge"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 20 20" width="14" height="14"><path d="M10 2C6 2 3 6 3 10s3 8 7 8 7-4 7-8-3-8-7-8z"/></svg>Vegan</div>
+          <div class="badge"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 20 20" width="14" height="14"><path d="M10 2l2 6h6l-5 4 2 6-5-4-5 4 2-6-5-4h6z"/></svg>Non-toxic</div>
+          <div class="badge"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 20 20" width="14" height="14"><path d="M10 2c-4 2-6 6-4 10 1 2 3 4 4 4 1 0 3-2 4-4 2-4 0-8-4-10z"/></svg>Eco-friendly</div>
+        </div>
+      </div>
+      <div class="fade-in fade-in-delay-1">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">
+          <div style="background:var(--warm-white);padding:2rem;text-align:center;">
+            <div style="font-family:var(--serif);font-size:2.5rem;font-weight:300;color:var(--gold);margin-bottom:0.3rem;">100%</div>
+            <div style="font-family:var(--sans);font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--mid);">Vegan products</div>
+          </div>
+          <div style="background:var(--warm-white);padding:2rem;text-align:center;">
+            <div style="font-family:var(--serif);font-size:2.5rem;font-weight:300;color:var(--gold);margin-bottom:0.3rem;">0</div>
+            <div style="font-family:var(--sans);font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--mid);">Toxic chemicals</div>
+          </div>
+          <div style="background:var(--warm-white);padding:2rem;text-align:center;">
+            <div style="font-family:var(--serif);font-size:2.5rem;font-weight:300;color:var(--gold);margin-bottom:0.3rem;">∞</div>
+            <div style="font-family:var(--sans);font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--mid);">Care for your hair</div>
+          </div>
+          <div style="background:var(--warm-white);padding:2rem;text-align:center;">
+            <div style="font-family:var(--serif);font-size:2.5rem;font-weight:300;color:var(--gold);margin-bottom:0.3rem;">♻</div>
+            <div style="font-family:var(--sans);font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--mid);">Sustainable packaging</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-banner">
+    <h2 class="fade-in">Not sure what's right for your hair?</h2>
+    <p class="fade-in fade-in-delay-1">Our stylists will recommend the perfect products for your hair type and goals.</p>
+    <a class="btn-outline-light fade-in fade-in-delay-2" onclick="showPage('contact')" style="cursor:pointer;">Book a Consultation</a>
+  </section>
+
+</div><!-- end products -->
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a class="nav-logo" onclick="showPage('home')">Mimosa Hair<span>by Victoria Kate</span></a>
+      <p>Eco-conscious hair salon in Twigworth, Gloucester. Expert colour, cuts, extensions, and treatments using vegan, non-toxic products.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <ul>
+        <li><a onclick="showPage('home')">Home</a></li>
+        <li><a onclick="showPage('about')">About Us</a></li>
+        <li><a onclick="showPage('services')">Services</a></li>
+        <li><a onclick="showPage('products')">Products</a></li>
+        <li><a onclick="showPage('testimonials')">Reviews</a></li>
+        <li><a onclick="showPage('contact')">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a onclick="showPage('services')">Haircut & Styling</a></li>
+        <li><a onclick="showPage('services')">Colour & Highlights</a></li>
+        <li><a onclick="showPage('services')">Smoothing Treatments</a></li>
+        <li><a onclick="showPage('services')">Hair Treatments</a></li>
+        <li><a onclick="showPage('services')">Hair Extensions</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="tel:01452767172">01452 767172</a></li>
+        <li><a href="mailto:mimosahairltd@gmail.com">mimosahairltd@gmail.com</a></li>
+        <li><span>Unit 4, Twigworth Local Centre, Barley Drive, Gloucester GL2 9SB</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Mimosa Hair Ltd. All rights reserved.</span>
+    <span>Eco-conscious salon · Gloucester</span>
+  </div>
+</footer>
+
+<script>
+  // Page routing
+  function showPage(id) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    const target = document.getElementById(id);
+    if (target) {
+      target.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      setTimeout(triggerFadeIns, 100);
+    }
+  }
+
+  // Nav scroll effect
+  window.addEventListener('scroll', () => {
+    const nav = document.getElementById('main-nav');
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Hamburger
+  function toggleMenu() {
+    const h = document.getElementById('hamburger');
+    const m = document.getElementById('mobile-menu');
+    h.classList.toggle('open');
+    m.classList.toggle('open');
+  }
+
+  function closeMenu() {
+    document.getElementById('hamburger').classList.remove('open');
+    document.getElementById('mobile-menu').classList.remove('open');
+  }
+
+  // Fade-in on scroll
+  function triggerFadeIns() {
+    const els = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    els.forEach(el => observer.observe(el));
+  }
+
+  // Product tab switching
+  function switchTab(id, btn) {
+    document.querySelectorAll('.prod-tab-content').forEach(t => t.style.display = 'none');
+    document.querySelectorAll('.prod-tab').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + id).style.display = 'block';
+    btn.classList.add('active');
+    setTimeout(triggerFadeIns, 50);
+  }
+
+  // Contact form
+  function handleSubmit() {
+    alert('Thank you for your message! We\'ll be in touch shortly.\n\nAlternatively, call us on 01452 767172.');
+  }
+
+  // Init
+  document.addEventListener('DOMContentLoaded', () => {
+    triggerFadeIns();
+  });
+
+  triggerFadeIns();
+</script>
+
+</body>
+</html>
